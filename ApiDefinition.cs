@@ -1,5 +1,4 @@
 using System;
-using AppsFlyer;
 using Foundation;
 using ObjCRuntime;
 
@@ -87,9 +86,13 @@ namespace AppsFlyer
 		[Export ("useReceiptValidationSandbox")]
 		bool UseReceiptValidationSandbox { get; [Bind ("setUseReceiptValidationSandbox:")] set; }
 
+		// @property (nonatomic, setter = setUseUninstallSandbox:) BOOL useUninstallSandbox;
+		[Export ("useUninstallSandbox")]
+		bool UseUninstallSandbox { get; [Bind ("setUseUninstallSandbox:")] set; }
+
 		// -(void)setUserEmails:(NSArray *)userEmails withCryptType:(EmailCryptType)type;
 		[Export ("setUserEmails:withCryptType:")]
-		void SetUserEmails (NSString[] userEmails, EmailCryptType type);
+		void SetUserEmails (NSObject[] userEmails, EmailCryptType type);
 
 		// -(void)trackAppLaunch;
 		[Export ("trackAppLaunch")]
@@ -103,8 +106,8 @@ namespace AppsFlyer
 		[Export ("trackEvent:withValues:")]
 		void TrackEvent (string eventName, NSDictionary values);
 
-		// -(void)validateAndTrackInAppPurchase:(NSString *)productIdentifier price:(NSString *)price currency:(NSString *)currency transactionId:(NSString *)tranactionId additionalParameters:(NSDictionary *)params success:(void (^)(NSDictionary *))successBlock failure:(void (^)(NSError *, id))failedBlock __attribute__((availability(ios, introduced=7.0)));
-		[Introduced(PlatformName.iOS, 7, 0)]
+		// -(void)validateAndTrackInAppPurchase:(NSString *)productIdentifier price:(NSString *)price currency:(NSString *)currency transactionId:(NSString *)tranactionId additionalParameters:(NSDictionary *)params success:(void (^)(NSDictionary *))successBlock failure:(void (^)(NSError *, id))failedBlock __attribute__((availability(ios, introduced=7_0)));
+		[Introduced(PlatformName.iOS, 7, 0)] 
 		[Export ("validateAndTrackInAppPurchase:price:currency:transactionId:additionalParameters:success:failure:")]
 		void ValidateAndTrackInAppPurchase (string productIdentifier, string price, string currency, string tranactionId, NSDictionary @params, Action<NSDictionary> successBlock, Action<NSError, NSObject> failedBlock);
 
@@ -128,13 +131,12 @@ namespace AppsFlyer
 		[Export ("handleOpenURL:sourceApplication:withAnnotation:")]
 		void HandleOpenURL (NSUrl url, string sourceApplication, NSObject annotation);
 
-		// -(BOOL)continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler __attribute__((availability(ios, introduced=9.0)));
-
+		// -(BOOL)continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler __attribute__((availability(ios, introduced=9_0)));
 		[Introduced(PlatformName.iOS, 9, 0)]
 		[Export ("continueUserActivity:restorationHandler:")]
 		bool ContinueUserActivity (NSUserActivity userActivity, Action<NSArray> restorationHandler);
 
-		// -(void)didUpdateUserActivity:(NSUserActivity *)userActivity __attribute__((availability(ios, introduced=9.0)));
+		// -(void)didUpdateUserActivity:(NSUserActivity *)userActivity __attribute__((availability(ios, introduced=9_0)));
 		[Introduced(PlatformName.iOS, 9, 0)]
 		[Export ("didUpdateUserActivity:")]
 		void DidUpdateUserActivity (NSUserActivity userActivity);
@@ -146,5 +148,9 @@ namespace AppsFlyer
 		// -(void)registerUninstall:(NSData *)deviceToken;
 		[Export ("registerUninstall:")]
 		void RegisterUninstall (NSData deviceToken);
+
+		// -(NSString *)getSDKVersion;
+		[Export ("getSDKVersion")]
+		string SDKVersion { get; }
 	}
 }
