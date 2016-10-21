@@ -1,6 +1,6 @@
 # AppsFlyer bindings for Xamarin.iOS
 
-Current AppsFlyer SDK version: **4.5.2**
+Current AppsFlyer SDK version: **4.5.9**
 
 ## How to use?
 

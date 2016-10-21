@@ -86,10 +86,6 @@ namespace AppsFlyer
 		[Export ("useReceiptValidationSandbox")]
 		bool UseReceiptValidationSandbox { get; [Bind ("setUseReceiptValidationSandbox:")] set; }
 
-		// @property (nonatomic, setter = setUseUninstallSandbox:) BOOL useUninstallSandbox;
-		[Export ("useUninstallSandbox")]
-		bool UseUninstallSandbox { get; [Bind ("setUseUninstallSandbox:")] set; }
-
 		// -(void)setUserEmails:(NSArray *)userEmails withCryptType:(EmailCryptType)type;
 		[Export ("setUserEmails:withCryptType:")]
 		void SetUserEmails (NSObject[] userEmails, EmailCryptType type);
@@ -131,10 +127,10 @@ namespace AppsFlyer
 		[Export ("handleOpenURL:sourceApplication:withAnnotation:")]
 		void HandleOpenURL (NSUrl url, string sourceApplication, NSObject annotation);
 
-		// -(BOOL)continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler __attribute__((availability(ios, introduced=9_0)));
+		// -(void)continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler __attribute__((availability(ios, introduced=9_0)));
 		[Introduced(PlatformName.iOS, 9, 0)]
 		[Export ("continueUserActivity:restorationHandler:")]
-		bool ContinueUserActivity (NSUserActivity userActivity, Action<NSArray> restorationHandler);
+		void ContinueUserActivity (NSUserActivity userActivity, Action<NSArray> restorationHandler);
 
 		// -(void)didUpdateUserActivity:(NSUserActivity *)userActivity __attribute__((availability(ios, introduced=9_0)));
 		[Introduced(PlatformName.iOS, 9, 0)]
@@ -144,13 +140,5 @@ namespace AppsFlyer
 		// -(void)handlePushNotification:(NSDictionary *)pushPayload;
 		[Export ("handlePushNotification:")]
 		void HandlePushNotification (NSDictionary pushPayload);
-
-		// -(void)registerUninstall:(NSData *)deviceToken;
-		[Export ("registerUninstall:")]
-		void RegisterUninstall (NSData deviceToken);
-
-		// -(NSString *)getSDKVersion;
-		[Export ("getSDKVersion")]
-		string SDKVersion { get; }
 	}
 }
