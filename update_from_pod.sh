@@ -8,7 +8,7 @@ cd ..
 cp sharpie_output/Binding/ApiDefinitions.cs ApiDefinition.cs
 cp sharpie_output/Binding/StructsAndEnums.cs Structs.cs
 
-rm -rf libAppsFlyerTracker.a
-cp -r sharpie_output/Pods/AppsFlyerFramework/AppsFlyerTracker.framework/AppsFlyerTracker ./libAppsFlyerTracker.a
+rm -rf AppsFlyerTracker.framework
+cp -r sharpie_output/Pods/AppsFlyerFramework/AppsFlyerTracker.framework .
 
 rm -rf sharpie_output

@@ -44,8 +44,8 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="libAppsFlyerTracker.a">
-      <Kind>Static</Kind>
+    <NativeReference Include="AppsFlyerTracker.framework">
+      <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
